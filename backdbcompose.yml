@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: Back-End
+    container_name: backend
+    ports:
+      - "2023:2023"
+    env_file:
+      - .env
+    depends_on:
+      - db
