@@ -1,0 +1,35 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: Back-End
+    container_name: backend
+    ports:
+      - "2023:2023"
+    env_file:
+      - backenvfile
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-h", "db", "-p", "5432"]
+      interval: 10s
+      timeout: 5s
+      retries: 5    
+
+  frontend:
+    build: Front-End
+    container_name: frontend
+    environment:
+      VITE_API_DOMAIN: "backend:2023/api/v1/"
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
