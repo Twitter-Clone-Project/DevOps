@@ -30,6 +30,6 @@ services:
     environment:
       VITE_API_DOMAIN: "backend:2023/api/v1/"
     ports:
-      - "5173:5173"
+      - "80:5173"
     depends_on:
       - backend
