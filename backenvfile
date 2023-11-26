@@ -2,44 +2,11 @@
 PORT=2023
 
 ## DB parameters
-DATABASE_HOST=db
+DATABASE_HOST=twitter-db.cuhr3xfur641.us-east-1.rds.amazonaws.com
 DATABASE_PORT=5432
 DATABASE_USERNAME=postgres
-DATABASE_PASSWORD=password
-DATABASE_NAME=db
-
-## jwt token
-JWT_SECRET_KEY=secret-key123
-JWT_TOKEN_EXPIRESIN=10d
-COOKIE_EXPIRESIN=10
-
-## Google Recaptcha 
-ReCAPTCHA_SECRET_KEY=6LeousYoAAAAADcEkeeMZabz1V6NFxINw1A1Ko_G
-
-## Google Oauth 2
-CLIENT_SECRET_GOOGLE=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
-CLIENT_ID_GOOGLE=326098642695-8j85ooiichgiulh1rdkiga48fkcjlp5t.apps.googleusercontent.com
-
-## Mailtrap
-MAIL_HOST=sandbox.smtp.mailtrap.io
-MAIL_PORT=587
-MAIL_USERNAME=0dce6af27663fa
-MAIL_PASSWORD=fd8ef26b433242
-MAIL_FROM=tweeter@gmail.com
-
-##Sendinblue
-SENDINBLUE_SERVER=smtp-relay.brevo.com
-SENDINBLUE_PORT=465
-SENDINBLUE_USER=myehia162@gmail.com
-SENDINBLUE_PASSWORD=## Server Port
-PORT=2023
-
-## DB parameters
-DATABASE_HOST=db
-DATABASE_PORT=5432
-DATABASE_USERNAME=postgres
-DATABASE_PASSWORD=password
-DATABASE_NAME=db
+DATABASE_PASSWORD=twitterdb
+DATABASE_NAME=twitterdb
 
 ## jwt token
 JWT_SECRET_KEY=secret-key123
