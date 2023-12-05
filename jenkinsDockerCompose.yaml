@@ -1,0 +1,18 @@
+version: '3'
+services:
+  backend:
+    image: goushaa/backend
+    container_name: backend
+    ports:
+      - "2023:2023"
+    env_file:
+      - backenvfile
+  frontend:
+    image: goushaa/frontend
+    container_name: frontend
+    env_file:
+      - frontenvfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
