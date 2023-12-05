@@ -1,0 +1,67 @@
+pipeline {
+    agent any
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker')
+        COMPOSE_FILE_PATH = '/home/goushaa/deploy/docker-compose.yaml'
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/Twitter-Clone-Project/Front-End.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building App....'
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
+
+        stage('Docker') {
+            steps {
+                echo 'Dockerizing Front....'
+                sh 'docker build -t goushaa/frontend:latest .'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running Tests....'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                sh 'docker push goushaa/frontend:latest'
+                sh 'docker logout'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Cleaning up...'
+            script {
+                // Stop and remove containers defined in the docker-compose.yml file
+                sh 'docker-compose -f $COMPOSE_FILE_PATH down'
+
+                // Remove images with the repository goushaa/frontend and no tag (dangling)
+                sh 'docker rmi $(docker images -f "dangling=true" -q)'
+
+            }
+        }
+
+        success {
+            echo 'Starting docker-compose...'
+            script {
+                // Start docker-compose
+                sh 'docker-compose -f $COMPOSE_FILE_PATH up -d'
+            }
+        }
+    }
+}
