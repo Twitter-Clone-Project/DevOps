@@ -1,3 +1,5 @@
-VITE_API_DOMAIN="172.190.85.243:2023/api/v1/"
+VITE_API_DOMAIN="https://twitter-clone.onthewifi.com:2023/api/v1/"
 VITE_DEFAULT_AVATAR="https://static-00.iconduck.com/assets.00/avatar-default-symbolic-icon-2048x1949-pq9uiebg.png"
 VITE_DEFAULT_BANNER="https://placehold.co/900x300/000000/FFF"
+VITE_CLIENT_ID_GOOGLE="326098642695-8j85ooiichgiulh1rdkiga48fkcjlp5t.apps.googleusercontent.com"
+VITE_SOCKET_DOMAIN="https://twitter-clone.onthewifi.com:2023"
